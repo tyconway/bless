@@ -1,0 +1,2 @@
+You have not counted any blessings yet.
+Give it a try with:  bless me "<description>"
