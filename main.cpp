@@ -85,12 +85,14 @@ int main(int argc, char *argv[]) {
   }
   
   else if (argv[2]) {
-      appendBlessing(string(argv[2]));
-      cout << "Your blessing was counted.\n";
+      if (argc == 3)
+        cout << "Your blessing was counted.\n";
+      else if (argc > 3)
+        cout << "Your blessings were counted.\n";
 
-      // Loop here that if there are more than two args, 
-      // loops through them and adds them to the list.
-      for (
+      for (int i = 2; i < argc; i++) {
+        appendBlessing(string(argv[i]));
+      }
   } 
   
   else {
