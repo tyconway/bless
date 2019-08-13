@@ -26,7 +26,7 @@ void setCount(int newCount) {
 
 }
 
-void appendBlessing(string text) {
+void appendItem(string text) {
   int count = getCount();
 
   // Appends text to hist.txt
@@ -46,16 +46,16 @@ void appendBlessing(string text) {
   setCount(count);
 }
 
-void readBlessings() {
+void readItems() {
   ifstream hist_file("./hist.txt", ios_base::app);
   cout << hist_file.rdbuf();
 }
 
-void clearBlessings() {
+void clearItems() {
   ofstream hist_file;
   hist_file.open("./hist.txt");
-  hist_file << "You have not counted any blessings yet.\n"
-               "Give it a try with:  bless me \"<description>\"\n";
+  hist_file << "You have not said any thank yous yet.\n"
+               "Give it a try with:  thank you \"<description>\"\n";
 
   cout << "Your list was cleared.\n";
   setCount(0);
@@ -63,25 +63,25 @@ void clearBlessings() {
 
 int main(int argc, char *argv[]) {
   if (!argv[1]) { // No passed arguments.
-    cout << "~~~~~~~~~~ Welcome to bless! ~~~~~~~~~~\n"
-            "A command line implementation of the\n"
-            "old hymn \"Count Your Many Blessings\".\n";
-    cout << "\nusage: bless <command> [args]"
+    cout << "~~~~~~~~~~ Welcome to thank! ~~~~~~~~~~\n"
+            "A command line version of a gratitude\n"
+            "journal and inspired by the old hymn \n"
+            "\"Count Your Many Blessings\".\n";
+    cout << "\nusage: thank <command> [args]"
             "\n\n"
-            "Add a new blessing to your list:\n"
-            "bless me \"<description of blessing>\"" 
+            "Add a new item to your list:\n"
+            "thank you \"<description>\"" 
             "\n\n"
             "See all your blessings counted:\n"
-            "bless me\n"
+            "thank you\n"
             "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
   } 
   
-  else if (argv[1] && string(argv[1]) == "me" && !argv[2]) { // If we don't check, next line will access something that doesn't exist.
-    // Reads blessings
-    readBlessings();
+  else if (argv[1] && string(argv[1]) == "you" && !argv[2]) { // If we don't check, next line will access something that doesn't exist.
+    readItems();
   } 
   else if (argv[1] && string(argv[1]) == "clear") {
-    clearBlessings();
+    clearItems();
   }
   
   else if (argv[2]) {
@@ -91,7 +91,7 @@ int main(int argc, char *argv[]) {
         cout << "Your blessings were counted.\n";
 
       for (int i = 2; i < argc; i++) {
-        appendBlessing(string(argv[i]));
+        appendItem(string(argv[i]));
       }
   } 
   
